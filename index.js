@@ -11,7 +11,6 @@ let dbReadyPromise;
 if (!dbReadyPromise) {
     dbReadyPromise = dbConnection();
 }
-
 app.use(async (req, res, next) => {
     try {
         await dbReadyPromise; // wait only first time

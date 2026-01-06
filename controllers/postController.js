@@ -24,3 +24,21 @@ exports.createPost = async(req,res) =>{
         });
     }
 }
+
+exports.getAllPost = async(req,res) =>{
+    try{
+        const response = await Post.find()
+                        .populate("comments")
+                        .populate("likes")
+        res.status(200).json({
+            success:true,
+            data:response,
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            success:false,
+            message:err.message,
+        })
+    }
+}
