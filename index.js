@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require('express')
 const dbConnection = require('./config/dbConnect');
 const route = require('./routes/blogs');
@@ -22,6 +23,10 @@ app.use(async (req, res, next) => {
         });
     }
 });
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 app.get('/',(req,res)=>{
     res.send(`<h1>This is backend home page and added database and models change  db</h1>`)
 })
